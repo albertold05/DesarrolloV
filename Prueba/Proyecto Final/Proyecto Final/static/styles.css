@@ -1,0 +1,277 @@
+body {
+  background-color: rgb(38, 51, 93);
+  color: white;
+}
+
+#barra-herramientas {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#leyenda {
+  color: rgb(249, 116, 75);
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}
+
+#area-visualizacion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+#gifForm {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#carga {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#carga input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#carga:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#carga h3 {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+#edicion {
+background: #f9f9f9;
+padding: 20px;
+color: #333;
+border-radius: 10px;
+margin: 20px;
+width: 80%;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+#edicion label {
+font-size: 1rem;
+margin-bottom: 5px;
+}
+
+#edicion input[type="number"],
+#edicion select {
+width: 100px;
+font-size: 1rem;
+margin-bottom: 10px;
+padding: 5px;
+border-radius: 5px;
+border: 1px solid #ddd;
+}
+
+#edicion button {
+width: 100px;
+font-size: 1rem;
+padding: 5px;
+border-radius: 5px;
+border: none;
+background-color: rgb(249, 116, 75);
+color: white;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+#edicion button:hover {
+background-color: rgb(236, 92, 52);
+}
+
+#videoPreview {
+width: 40%;
+height: 70%;
+}
+
+.hidden {
+display: none;
+}
+
+#selectedImages {
+width: 40%;
+height: 70%;
+}
+
+.selected-image {
+width: 100%;
+height: auto;
+}
+
+.selected-video {
+width: 100%;
+height: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  #barra-herramientas h1 {
+    font-size: 1.5rem;
+  }
+
+  #leyenda {
+    font-size: 0.8rem;
+  }
+
+  #area-visualizacion {
+    font-size: 0.8rem;
+  }
+}
+
+#gifContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+}
+
+#gifContainer img, #gifContainer video {
+  width: 20%;  
+  height: auto; 
+  margin: 1%;  
+  box-sizing: border-box; 
+  transition: transform 0.2s;  
+}
+
+#gifContainer img:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  #gifContainer img {
+      width: 30%;
+      margin: 1%;
+  }
+}
+
+@media (max-width: 768px) {
+  #gifContainer img {
+      width: 45%; 
+      margin: 2.5%; 
+  }
+}
+
+@media (max-width: 480px) {
+  #gifContainer img {
+      width: 90%; 
+      margin: 5%; 
+  }
+}
+
+#botones{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#saveButton{
+  margin-right: 20px;
+}
+
+/* Estilos generales para el input range */
+input[type="range"] {
+  width: 100%;  /* Establece el ancho completo */
+  height: 10px;  /* Ajusta la altura */
+  background: #ddd;  /* Fondo del rango */
+  outline: none;  /* Elimina el contorno */
+  opacity: 0.7;  /* Ajusta la opacidad */
+  transition: opacity 0.2s;  /* Transición suave para la opacidad */
+}
+
+input[type="range"]:hover {
+  opacity: 1;  /* Opacidad completa al pasar el ratón */
+}
+
+/* Estilos personalizados para el pulgar/control deslizante */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;  /* Elimina el estilo predeterminado en Chrome/Safari */
+  appearance: none;
+  width: 5%;  /* Ancho del pulgar en porcentaje */
+  height: 25px;  /* Altura del pulgar */
+  background: #4CAF50;  /* Color del pulgar */
+  cursor: pointer;  /* Cambia el cursor a puntero */
+  border-radius: 50%;  /* Hace el pulgar circular */
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);  /* Sombra para el pulgar */
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 5%;  /* Ancho del pulgar en Firefox */
+  height: 25px;  /* Altura del pulgar en Firefox */
+  background: #4CAF50;  /* Color del pulgar en Firefox */
+  cursor: pointer;  /* Cambia el cursor a puntero */
+  border-radius: 50%;  /* Hace el pulgar circular en Firefox */
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);  /* Sombra para el pulgar en Firefox */
+}
+
+/* Estilos personalizados para la pista del rango en Firefox */
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 10px;
+  background: #ddd;
+}
+
+input[type="range"]::-ms-thumb {
+  width: 5%;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  width: 80%; 
+  margin: 0 auto; 
+}
+
+
+#percentage-value {
+  margin-left: 10px; 
+  font-size: 1.2em; 
+}
+
+
+@media only screen and (min-width: 601px) {
+  #barra-herramientas h1 {
+    font-size: 2rem;
+  }
+
+  #leyenda {
+    font-size: 1rem;
+  }
+
+  #area-visualizacion {
+    font-size: 1rem;
+  }
+}

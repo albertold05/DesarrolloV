@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GIF Creator</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div id="barra-herramientas">
+      <h1>Editor de GIF's</h1>
+    </div>
+    <div>
+      <h2 id="leyenda">
+        Con este editor de gif podrás convertir tus mejores videos o imagenes en
+        gif de una manera super sencilla.
+      </h2>
+    </div>
+    <div id="area-visualizacion">
+      <form
+        id="gifForm"
+        action="/create_gif"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div id="carga">
+          <h3>Subir Archivo de Video o Imagenes</h3>
+          <img
+            id="imagenSubida"
+            src="https://cdn-icons-png.flaticon.com/512/3616/3616929.png"
+            width="100"
+            height="100"
+          />
+          <input
+            type="file"
+            id="mediaInput"
+            name="fileInput"
+            accept="image/*, video/*, .gif,.webp,.mp4"
+            multiple
+          />
+        </div>
+        <div id="edicion">
+          <label for="duration">Duración (segundos):</label>
+          <input
+            type="number"
+            id="duration"
+            name="duration"
+            value="3"
+            min="1"
+            step="1"
+            max="15"
+          /><br />
+          <label for="fps">Velocidad (Fotogramas por segundo):</label>
+          <input
+            type="number"
+            id="fps"
+            name="fps"
+            value="24"
+            min="1"
+            step="1"
+          /><br />
+          <label for="start">Inicio del recorte (segundos):</label>
+          <input
+            type="number"
+            id="start"
+            name="start"
+            value="0"
+            min="0"
+            step="1"
+          /><br />
+          <label for="end">Fin del recorte (segundos):</label>
+          <input
+            type="number"
+            id="end"
+            name="end"
+            value="0"
+            min="0"
+            step="1"
+          /><br />
+          <label for="effect">Efecto:</label>
+          <select id="effect" name="effect">
+            <option value="none">Ninguno</option>
+            <option value="grayscale">Escala de Grises</option>
+            <option value="invert_colors">Colores Invertidos</option>
+            <option value="sepia">Sepia</option>
+            <option value="blur">Desenfoque</option>
+            <option value="contrast">Aumento de Contraste</option>
+            <option value="noise_reduction">Reducción de Ruido</option>
+            <option value="edge_detection">Bordes Detectados</option>
+            <option value="mosaic">Mosaico</option>
+            <option value="wave_distortion">Distorsión de Onda</option>
+            <option value="mirror_horizontal">
+              Efecto de Espejo (Horizontal)
+            </option>
+            <option value="mirror_vertical">Efecto de Espejo (Vertical)</option>
+            <option value="rotate">Rotación</option>
+            <option value="water_reflection">Efecto de Reflejo de Agua</option>
+          </select>
+          <div class="slider-container">
+            <input
+              type="range"
+              id="porcentaje"
+              value="0"
+              min="0"
+              max="100"
+              oninput="updateValue(this.value)"
+            />
+            <span id="percentage-value">0%</span>
+          </div>
+          <div>
+            <label for="exportFormat">Formato de Exportación:</label>
+            <select id="exportFormat" name="exportFormat">
+              <option value="gif">GIF</option>
+              <option value="mp4">MP4</option>
+              <option value="webm">WebM</option>
+            </select>
+          </div>
+          <div id="botones">
+            <button type="submit" id="saveButton">Realizar</button>
+            <button id="download">Descargar</button>
+          </div>
+        </div>
+      </form>
+      <video id="videoPreview" class="hidden" controls></video>
+      <div id="selectedImages"></div>
+    </div>
+    <h1>Archivos GIF Disponibles</h1>
+    <div id="gifContainer">
+      {% for file in gif_files %} {% if file.endswith('.gif') %}
+      <img src="{{ url_for('static', filename=file) }}" alt="GIF" />
+      {% elif file.endswith('.mp4') %}
+      <video controls>
+        <source src="{{ url_for('static', filename=file) }}" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      {% elif file.endswith('.webm') %}
+      <video controls>
+        <source
+          src="{{ url_for('static', filename=file) }}"
+          type="video/webm"
+        />
+        Your browser does not support the video tag.
+      </video>
+      {% endif %} {% endfor %}
+    </div>
+
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
